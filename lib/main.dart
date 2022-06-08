@@ -75,759 +75,524 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: <Widget>[
-
         // MENU
-
         Container(
-            alignment: Alignment.center,
-            child: ListView(
-              padding: const EdgeInsets.all(30),
-              children: const <Widget>[
-                SizedBox(
-                  height: 250,
-                  child: Card(
-                    clipBehavior: Clip.hardEdge,
-                    child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: Center(
-                          child: Image(
-                        image: AssetImage("assets/images/plat1.jpg"),
-                      )),
-                    ),
+          // width: MediaQuery.of(context).size.width,
+          // height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
+          child: PageView(
+            /// [PageView.scrollDirection] defaults to [Axis.horizontal].
+            /// Use [Axis.vertical] to scroll vertically.
+            pageSnapping: true,
+            controller: controller,
+            children: <Widget>[
+
+              //LUNDI
+              Column(
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10.0),
                   ),
-                ),
-                SizedBox(
-                  height: 250,
-                  child: Card(
-                    clipBehavior: Clip.hardEdge,
-                    child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: Center(
-                          child: Image(
-                        image: AssetImage("assets/images/plat1.jpg"),
-                      )),
-                    ),
+                  Text('LUNDI'),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        child: ListView(
+                            padding: const EdgeInsets.all(30),
+                            children: const <Widget>[
+                              // ENTREE
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                      image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                    )),
+                                  ),
+                                ),
+                              ),
+
+
+                              // PLAT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+
+
+                              // DESSERT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+                            ])),
                   ),
-                ),
-                SizedBox(
-                  height: 250,
-                  child: Card(
-                    clipBehavior: Clip.hardEdge,
-                    child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: Center(
-                          child: Image(
-                        image: AssetImage("assets/images/plat1.jpg"),
-                      )),
-                    ),
+                ],
+              ),
+
+
+              //MARDI
+              Column(
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10.0),
                   ),
-                ),
-              ],
-            )),
+                  Text('MARDI'),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        child: ListView(
+                            padding: const EdgeInsets.all(30),
+                            children: const <Widget>[
+                              // ENTREE
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
 
 
-     // Notation
+                              // PLAT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
 
-     Container(
-            alignment: Alignment.center,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
 
-                //LUNDI
 
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  alignment: Alignment.center,
-                  child: ListView(
-                    padding: const EdgeInsets.all(30),
-                    children: const <Widget>[
-                      SizedBox(
-                        height: 250,
-                        child: Card(
-                          clipBehavior: Clip.hardEdge,
-                          child: FittedBox(
-                            fit: BoxFit.cover,
-                            child: Center(
-                                child: Image(
-                                  image: AssetImage("assets/images/plat1.jpg"),
-                                )),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 250,
-                        child: Card(
-                          clipBehavior: Clip.hardEdge,
-                          child: FittedBox(
-                            fit: BoxFit.cover,
-                            child: Center(
-                                child: Image(
-                                  image: AssetImage("assets/images/plat1.jpg"),
-                                )),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 250,
-                        child: Card(
-                          clipBehavior: Clip.hardEdge,
-                          child: FittedBox(
-                            fit: BoxFit.cover,
-                            child: Center(
-                                child: Image(
-                                  image: AssetImage("assets/images/plat1.jpg"),
-                                )),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
+                              // DESSERT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
 
-                //MARDI
-                Container(
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.center,
-                    child: ListView(
-                      padding: const EdgeInsets.all(30),
-                      children: const <Widget>[
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
-                //MARDI
-                Container(
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.center,
-                    child: ListView(
-                      padding: const EdgeInsets.all(30),
-                      children: const <Widget>[
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
-                //MARDI
-                Container(
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.center,
-                    child: ListView(
-                      padding: const EdgeInsets.all(30),
-                      children: const <Widget>[
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
-                //MARDI
-                Container(
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.center,
-                    child: ListView(
-                      padding: const EdgeInsets.all(30),
-                      children: const <Widget>[
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
-                //MARDI
-                Container(
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.center,
-                    child: ListView(
-                      padding: const EdgeInsets.all(30),
-                      children: const <Widget>[
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
-                //MARDI
-                Container(
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.center,
-                    child: ListView(
-                      padding: const EdgeInsets.all(30),
-                      children: const <Widget>[
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 250,
-                          child: Card(
-                            clipBehavior: Clip.hardEdge,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Center(
-                                  child: Image(
-                                    image: AssetImage("assets/images/plat1.jpg"),
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ))
+                            ])),
+                  ),
+                ],
+              ),
 
-              ],
-            ),
+
+              //MERCREDI
+              Column(
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10.0),
+                  ),
+                  Text('MERCREDI'),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        child: ListView(
+                            padding: const EdgeInsets.all(30),
+                            children: const <Widget>[
+                              // ENTREE
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+
+                              // PLAT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+
+
+                              // DESSERT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+                            ])),
+                  ),
+                ],
+              ),
+
+
+              //JEUDI
+              Column(
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10.0),
+                  ),
+                  Text('JEUDI'),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        child: ListView(
+                            padding: const EdgeInsets.all(30),
+                            children: const <Widget>[
+                              // ENTREE
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+
+                              // PLAT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+
+
+                              // DESSERT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+                            ])),
+                  ),
+                ],
+              ),
+
+
+              //VENDREDI
+              Column(
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10.0),
+                  ),
+                  Text('VENDREDI'),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        child: ListView(
+                            padding: const EdgeInsets.all(30),
+                            children: const <Widget>[
+                              // ENTREE
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+
+                              // PLAT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+
+
+                              // DESSERT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+                            ])),
+                  ),
+                ],
+              ),
+
+
+              //SAMEDI
+              Column(
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10.0),
+                  ),
+                  Text('SAMEDI'),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        child: ListView(
+                            padding: const EdgeInsets.all(30),
+                            children: const <Widget>[
+                              // ENTREE
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+
+                              // PLAT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+
+
+                              // DESSERT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+                            ])),
+                  ),
+                ],
+              ),
+
+
+              //DIMANCHE
+              Column(
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 10.0),
+                  ),
+                  Text('DIMANCHE'),
+                  Expanded(
+                    child: Container(
+                        alignment: Alignment.center,
+                        child: ListView(
+                            padding: const EdgeInsets.all(30),
+                            children: const <Widget>[
+                              // ENTREE
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+
+                              // PLAT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+
+
+                              // DESSERT
+                              SizedBox(
+                                height: 250,
+                                child: Card(
+                                  clipBehavior: Clip.hardEdge,
+                                  child: FittedBox(
+                                    fit: BoxFit.cover,
+                                    child: Center(
+                                        child: Image(
+                                          image:
+                                          AssetImage("assets/images/plat1.jpg"),
+                                        )),
+                                  ),
+                                ),
+                              ),
+
+                            ])),
+                  ),
+                ],
+              ),
+
+            ],
           ),
-
-
-
-        // Voter
-
-        PageView(
-          /// [PageView.scrollDirection] defaults to [Axis.horizontal].
-          /// Use [Axis.vertical] to scroll vertically.
-         pageSnapping: true,
-          controller: controller,
-          children:  <Widget>[
-
-            //LUNDI
-
-            Container(
-
-                alignment: Alignment.center,
-                child: ListView(
-                  padding: const EdgeInsets.all(30),
-                  children: const <Widget>[
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-
-            //MARDI
-            Container(
-
-                alignment: Alignment.center,
-                child: ListView(
-                  padding: const EdgeInsets.all(30),
-                  children: const <Widget>[
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-            //MERCREDI
-            Container(
-
-                alignment: Alignment.center,
-                child: ListView(
-                  padding: const EdgeInsets.all(30),
-                  children: const <Widget>[
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-            //JEUDI
-            Container(
-
-                alignment: Alignment.center,
-                child: ListView(
-                  padding: const EdgeInsets.all(30),
-                  children: const <Widget>[
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-            //VENDREDI
-            Container(
-
-                alignment: Alignment.center,
-                child: ListView(
-                  padding: const EdgeInsets.all(30),
-                  children: const <Widget>[
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-            //SAMEDI
-            Container(
-                alignment: Alignment.center,
-                child: ListView(
-                  padding: const EdgeInsets.all(30),
-                  children: const <Widget>[
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-            //DIMANCHE
-            Container(
-                alignment: Alignment.center,
-                child: ListView(
-                  padding: const EdgeInsets.all(30),
-                  children: const <Widget>[
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        child: FittedBox(
-                          fit: BoxFit.cover,
-                          child: Center(
-                              child: Image(
-                                image: AssetImage("assets/images/plat1.jpg"),
-                              )),
-                        ),
-                      ),
-                    ),
-                  ],
-                ))
-
-          ],
         ),
 
+        // Notation
+        Container(
+          alignment: Alignment.center,
+          child: const Text('Page 2'),
+        ),
+
+        // Voter
+        Container(
+          alignment: Alignment.center,
+          child: const Text('Page 3'),
+        ),
+
+        // Stats
         Container(
           alignment: Alignment.center,
           child: const Text('Page 4'),
