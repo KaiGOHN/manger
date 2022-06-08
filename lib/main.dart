@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
+import 'package:d_chart/d_chart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,17 +32,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Define data structure for a bar group
-class DataItem {
-  int x;
-  double y1;
-  double y2;
-  double y3;
-
-  DataItem(
-      {required this.x, required this.y1, required this.y2, required this.y3});
-}
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -66,12 +55,29 @@ class _MyHomePageState extends State<MyHomePage> {
   final bool _isVertical = false;
   int _selectedIndex = 0;
 
-
+  Widget _buildPopupDialog(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Contact'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text("loic.daude@mondet.fr"),
+        ],
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            Navigator.pop(context);
+          },
+          child: const Text('Fermer'),
+        ),
+      ],
+    );
+  }
 
   final PageController controller = PageController();
-
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   void _onItemTapped(int index) {
     setState(() {
@@ -88,6 +94,58 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PanierRoute()),
+          );
+          // Add your onPressed code here!
+        },
+        backgroundColor: Colors.blue,
+        child: const Icon(Icons.shopping_cart_checkout),
+      ),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('MANGER'),
+            ),
+            ListTile(
+              title: const Text('Paramètres'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ParamRoute()),
+                );
+
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text('Contact'),
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => _buildPopupDialog(context),
+                );
+
+                // Update the state of the app.
+                // ...
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
@@ -95,37 +153,35 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: <Widget>[
         // MENU
-        Container(
-          // width: MediaQuery.of(context).size.width,
-          // height: MediaQuery.of(context).size.height,
-          alignment: Alignment.center,
-          child: PageView(
-            /// [PageView.scrollDirection] defaults to [Axis.horizontal].
-            /// Use [Axis.vertical] to scroll vertically.
-            pageSnapping: true,
-            controller: controller,
-            children: <Widget>[
-              //LUNDI
-              Column(
+        Center(
+          child: Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.height,
+              child: PageView(
+                /// [PageView.scrollDirection] defaults to [Axis.horizontal].
+                /// Use [Axis.vertical] to scroll vertically.
+                pageSnapping: true,
+                controller: controller,
                 children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                  ),
-                  const Text('LUNDI',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                  Expanded(
-                    child: Container(
-                        alignment: Alignment.center,
-                        child: ListView(
-                            padding: const EdgeInsets.all(10),
-                            children: <Widget>[
-                              // Entrées
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                  //LUNDI
+                  Column(
+                    children: <Widget>[
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                      ),
+                      const Text('LUNDI',
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                      Expanded(
+                        child: Container(
+                            alignment: Alignment.center,
+                            child: ListView(
+                                padding: const EdgeInsets.all(10),
+                                children: <Widget>[
+                                  // Entrées
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -138,16 +194,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Entrées",
                                                 style: TextStyle(
@@ -157,12 +215,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // PLATS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // PLATS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -175,31 +230,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Plats",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // DESSERTS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // DESSERTS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -212,52 +266,52 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Desserts",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-                            ])),
+                                  ),
+                                ])),
+                      ),
+                    ],
                   ),
-                ],
-              ),
 
-              //MARDI
-              Column(
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                  ),
-                  const Text('MARDI',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                  Expanded(
-                    child: Container(
-                        alignment: Alignment.center,
-                        child: ListView(
-                            padding: const EdgeInsets.all(10),
-                            children: <Widget>[
-                              // Entrées
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                  //MARDI
+                  Column(
+                    children: <Widget>[
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                      ),
+                      const Text('MARDI',
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                      Expanded(
+                        child: Container(
+                            alignment: Alignment.center,
+                            child: ListView(
+                                padding: const EdgeInsets.all(10),
+                                children: <Widget>[
+                                  // Entrées
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -270,16 +324,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Entrées",
                                                 style: TextStyle(
@@ -289,12 +345,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // PLATS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // PLATS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -307,31 +360,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Plats",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // DESSERTS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // DESSERTS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -344,52 +396,52 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Desserts",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-                            ])),
+                                  ),
+                                ])),
+                      ),
+                    ],
                   ),
-                ],
-              ),
 
-              //MERCREDI
-              Column(
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                  ),
-                  const Text('MERCREDI',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                  Expanded(
-                    child: Container(
-                        alignment: Alignment.center,
-                        child: ListView(
-                            padding: const EdgeInsets.all(10),
-                            children: <Widget>[
-                              // Entrées
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                  //MERCREDI
+                  Column(
+                    children: <Widget>[
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                      ),
+                      const Text('MERCREDI',
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                      Expanded(
+                        child: Container(
+                            alignment: Alignment.center,
+                            child: ListView(
+                                padding: const EdgeInsets.all(10),
+                                children: <Widget>[
+                                  // Entrées
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -402,16 +454,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Entrées",
                                                 style: TextStyle(
@@ -421,12 +475,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // PLATS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // PLATS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -439,31 +490,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Plats",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // DESSERTS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // DESSERTS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -476,52 +526,52 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Desserts",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-                            ])),
+                                  ),
+                                ])),
+                      ),
+                    ],
                   ),
-                ],
-              ),
 
-              //JEUDI
-              Column(
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                  ),
-                  const Text('JEUDI',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                  Expanded(
-                    child: Container(
-                        alignment: Alignment.center,
-                        child: ListView(
-                            padding: const EdgeInsets.all(10),
-                            children: <Widget>[
-                              // Entrées
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                  //JEUDI
+                  Column(
+                    children: <Widget>[
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                      ),
+                      const Text('JEUDI',
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                      Expanded(
+                        child: Container(
+                            alignment: Alignment.center,
+                            child: ListView(
+                                padding: const EdgeInsets.all(10),
+                                children: <Widget>[
+                                  // Entrées
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -534,16 +584,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Entrées",
                                                 style: TextStyle(
@@ -553,12 +605,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // PLATS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // PLATS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -571,31 +620,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Plats",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // DESSERTS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // DESSERTS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -608,52 +656,52 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Desserts",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-                            ])),
+                                  ),
+                                ])),
+                      ),
+                    ],
                   ),
-                ],
-              ),
 
-              //VENDREDI
-              Column(
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                  ),
-                  const Text('VENDREDI',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                  Expanded(
-                    child: Container(
-                        alignment: Alignment.center,
-                        child: ListView(
-                            padding: const EdgeInsets.all(10),
-                            children: <Widget>[
-                              // Entrées
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                  //VENDREDI
+                  Column(
+                    children: <Widget>[
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                      ),
+                      const Text('VENDREDI',
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                      Expanded(
+                        child: Container(
+                            alignment: Alignment.center,
+                            child: ListView(
+                                padding: const EdgeInsets.all(10),
+                                children: <Widget>[
+                                  // Entrées
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -666,16 +714,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Entrées",
                                                 style: TextStyle(
@@ -685,12 +735,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // PLATS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // PLATS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -703,31 +750,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Plats",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // DESSERTS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // DESSERTS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -740,52 +786,52 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Desserts",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-                            ])),
+                                  ),
+                                ])),
+                      ),
+                    ],
                   ),
-                ],
-              ),
 
-              //SAMEDI
-              Column(
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                  ),
-                  const Text('SAMEDI',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                  Expanded(
-                    child: Container(
-                        alignment: Alignment.center,
-                        child: ListView(
-                            padding: const EdgeInsets.all(10),
-                            children: <Widget>[
-                              // Entrées
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                  //SAMEDI
+                  Column(
+                    children: <Widget>[
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                      ),
+                      const Text('SAMEDI',
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                      Expanded(
+                        child: Container(
+                            alignment: Alignment.center,
+                            child: ListView(
+                                padding: const EdgeInsets.all(10),
+                                children: <Widget>[
+                                  // Entrées
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -798,16 +844,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Entrées",
                                                 style: TextStyle(
@@ -817,12 +865,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // PLATS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // PLATS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -835,31 +880,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Plats",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // DESSERTS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // DESSERTS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -872,52 +916,52 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Desserts",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-                            ])),
+                                  ),
+                                ])),
+                      ),
+                    ],
                   ),
-                ],
-              ),
 
-              //DIMANCHE
-              Column(
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                  ),
-                  const Text('DIMANCHE',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                  Expanded(
-                    child: Container(
-                        alignment: Alignment.center,
-                        child: ListView(
-                            padding: const EdgeInsets.all(10),
-                            children: <Widget>[
-                              // Entrées
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                  //DIMANCHE
+                  Column(
+                    children: <Widget>[
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                      ),
+                      const Text('DIMANCHE',
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                      Expanded(
+                        child: Container(
+                            alignment: Alignment.center,
+                            child: ListView(
+                                padding: const EdgeInsets.all(10),
+                                children: <Widget>[
+                                  // Entrées
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -930,16 +974,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Entrées",
                                                 style: TextStyle(
@@ -949,12 +995,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // PLATS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // PLATS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -967,31 +1010,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Plats",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-
-                              // DESSERTS
-                              SizedBox(
-                                  height: 250,
-                                  child: GestureDetector(
+                                  ),
+                                  // DESSERTS
+                                  GestureDetector(
                                     onTap: () => {
                                       Navigator.push(
                                         context,
@@ -1004,36 +1046,40 @@ class _MyHomePageState extends State<MyHomePage> {
                                       alignment: Alignment.center,
                                       children: const <Widget>[
                                         Card(
-                                          clipBehavior: Clip.hardEdge,
-                                          child: FittedBox(
-                                            fit: BoxFit.cover,
-                                            child: Center(
-                                                child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/plat1.jpg"),
+                                            clipBehavior: Clip.hardEdge,
+                                            child: FittedBox(
+                                              fit: BoxFit.fill,
+                                              child: Center(
+                                                  child: Image(
+                                                width: 600,
+                                                height: 399,
+                                                image: AssetImage(
+                                                  "assets/images/plat1.jpg",
+                                                ),
+                                              )),
                                             )),
-                                          ),
-                                        ),
                                         Center(
                                             child: Text("Desserts",
                                                 style: TextStyle(
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold)))
+                                                        FontWeight.bold))),
                                       ],
                                     ),
-                                  )),
-                            ])),
+                                  ),
+                                ])),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ],
-          ),
+              )),
         ),
 
         // Notation
         Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             alignment: Alignment.center,
             child: ListView(
               children: <Widget>[
@@ -1110,8 +1156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         }
                       },
                       onRatingUpdate: (rating) {
-                        setState(() {
-                        });
+                        setState(() {});
                       },
                       updateOnDrag: true,
                     )
@@ -1190,8 +1235,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         }
                       },
                       onRatingUpdate: (rating) {
-                        setState(() {
-                        });
+                        setState(() {});
                       },
                       updateOnDrag: true,
                     )
@@ -1270,8 +1314,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         }
                       },
                       onRatingUpdate: (rating) {
-                        setState(() {
-                        });
+                        setState(() {});
                       },
                       updateOnDrag: true,
                     )
@@ -1350,8 +1393,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         }
                       },
                       onRatingUpdate: (rating) {
-                        setState(() {
-                        });
+                        setState(() {});
                       },
                       updateOnDrag: true,
                     )
@@ -1430,8 +1472,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         }
                       },
                       onRatingUpdate: (rating) {
-                        setState(() {
-                        });
+                        setState(() {});
                       },
                       updateOnDrag: true,
                     )
@@ -1510,8 +1551,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         }
                       },
                       onRatingUpdate: (rating) {
-                        setState(() {
-                        });
+                        setState(() {});
                       },
                       updateOnDrag: true,
                     )
@@ -1544,187 +1584,288 @@ class _MyHomePageState extends State<MyHomePage> {
 
         // Voter
         Container(
-          child: Center(
-              child: Container(
-            height: MediaQuery.of(context).size.height * 0.8,
-            width: MediaQuery.of(context).size.width * 0.9,
-            child: AppinioSwiper(
-              cards: <Widget>[
-                Container(
-                    height: MediaQuery.of(context).size.height * 0.8,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(0, 3),
-                          blurRadius: 7,
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                      ],
-                    ),
-                    child: Column(children: <Widget>[
-                      const Expanded(child:         SizedBox(
-                        child: Card(
-                          clipBehavior: Clip.hardEdge,
-                          child: FittedBox(
-                            fit: BoxFit.cover,
-                            child: Center(
-                                child: Image(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
+          child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.8,
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: AppinioSwiper(
+                cards: <Widget>[
+                  Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [
+                          BoxShadow(
+                            offset: const Offset(0, 3),
+                            blurRadius: 7,
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                        ],
+                      ),
+                      child: Column(children: <Widget>[
+                        const Expanded(
+                          child: SizedBox(
+                            child: Card(
+                              clipBehavior: Clip.hardEdge,
+                              child: FittedBox(
+                                fit: BoxFit.cover,
+                                child: Center(
+                                    child: Image(
+                                  width: 600,
+                                  height: 399,
                                   image: AssetImage("assets/images/plat1.jpg"),
                                 )),
-                          ),
-                        ),
-                      ),),
-
-                      const Padding(
-                        padding: EdgeInsets.only(top: 20.0),
-                      ),
-                      const Text('Nom du plat',
-                          style: TextStyle(fontSize: 40, color: Colors.black)),
-                      const Padding(
-                        padding:
-                        EdgeInsets.only(top: 20.0, left: 30, right: 30),
-                        child: Text(
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-                            style:
-                            TextStyle(fontSize: 17, color: Colors.black)),
-                      ),
-                      Expanded(
-                        child: ListView(
-                          children: <Widget>[
-                            const ListTile(
-                              leading: Icon(Icons.fastfood),
-                              title: Text('Ingredient 1'),
-                            ),
-                            const ListTile(
-                              leading: Icon(Icons.fastfood),
-                              title: Text('Ingredient 2'),
-                            ),
-                            const ListTile(
-                              leading: Icon(Icons.fastfood),
-                              title: Text('Ingredient 3'),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20.0),
-                              child: Center(
-                                child: Column(
-                                  children: <Widget>[
-                                    const Text("Valeur nutrionnelle",
-                                        style: TextStyle(
-                                            fontSize: 30, color: Colors.black)),
-                                    RatingBarIndicator(
-                                      rating: 2.75,
-                                      itemBuilder: (context, index) =>
-                                      const Icon(
-                                        Icons.circle,
-                                        color: Colors.green,
-                                      ),
-                                      itemCount: 5,
-                                      itemSize: 50.0,
-                                      direction: Axis.horizontal,
-                                    )
-                                  ],
-                                ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20.0),
+                        ),
+                        const Text('Nom du plat',
+                            style:
+                                TextStyle(fontSize: 40, color: Colors.black)),
+                        const Padding(
+                          padding:
+                              EdgeInsets.only(top: 20.0, left: 30, right: 30),
+                          child: Text(
+                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.black)),
+                        ),
+                        Expanded(
+                          child: ListView(
+                            children: <Widget>[
+                              const ListTile(
+                                leading: Icon(Icons.fastfood),
+                                title: Text('Ingredient 1'),
+                              ),
+                              const ListTile(
+                                leading: Icon(Icons.fastfood),
+                                title: Text('Ingredient 2'),
+                              ),
+                              const ListTile(
+                                leading: Icon(Icons.fastfood),
+                                title: Text('Ingredient 3'),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20.0),
+                                child: Center(
+                                  child: Column(
+                                    children: <Widget>[
+                                      const Text("Valeur nutrionnelle",
+                                          style: TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.black)),
+                                      RatingBarIndicator(
+                                        rating: 2.75,
+                                        itemBuilder: (context, index) =>
+                                            const Icon(
+                                          Icons.circle,
+                                          color: Colors.green,
+                                        ),
+                                        itemCount: 5,
+                                        itemSize: 50.0,
+                                        direction: Axis.horizontal,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ])),
+                  Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [
+                          BoxShadow(
+                            offset: const Offset(0, 3),
+                            blurRadius: 7,
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                        ],
                       ),
-                    ])),
-                Container(
-                    height: MediaQuery.of(context).size.height * 0.8,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(0, 3),
-                          blurRadius: 7,
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                      ],
-                    ),
-                    child: Column(children: <Widget>[
-                      const Expanded(child:         SizedBox(
-                        child: Card(
-                          clipBehavior: Clip.hardEdge,
-                          child: FittedBox(
-                            fit: BoxFit.cover,
-                            child: Center(
-                                child: Image(
+                      child: Column(children: <Widget>[
+                        const Expanded(
+                          child: SizedBox(
+                            child: Card(
+                              clipBehavior: Clip.hardEdge,
+                              child: FittedBox(
+                                fit: BoxFit.cover,
+                                child: Center(
+                                    child: Image(
+                                  width: 1239,
+                                  height: 874,
                                   image: AssetImage("assets/images/plat2.jpg"),
                                 )),
-                          ),
-                        ),
-                      ),),
-
-                      const Padding(
-                        padding: EdgeInsets.only(top: 20.0),
-                      ),
-                      const Text('Nom du plat',
-                          style: TextStyle(fontSize: 40, color: Colors.black)),
-                      const Padding(
-                        padding:
-                        EdgeInsets.only(top: 20.0, left: 30, right: 30),
-                        child: Text(
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-                            style:
-                            TextStyle(fontSize: 17, color: Colors.black)),
-                      ),
-                      Expanded(
-                        child: ListView(
-                          children: <Widget>[
-                            const ListTile(
-                              leading: Icon(Icons.fastfood),
-                              title: Text('Ingredient 1'),
-                            ),
-                            const ListTile(
-                              leading: Icon(Icons.fastfood),
-                              title: Text('Ingredient 2'),
-                            ),
-                            const ListTile(
-                              leading: Icon(Icons.fastfood),
-                              title: Text('Ingredient 3'),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20.0),
-                              child: Center(
-                                child: Column(
-                                  children: <Widget>[
-                                    const Text("Valeur nutrionnelle",
-                                        style: TextStyle(
-                                            fontSize: 30, color: Colors.black)),
-                                    RatingBarIndicator(
-                                      rating: 2.75,
-                                      itemBuilder: (context, index) =>
-                                      const Icon(
-                                        Icons.circle,
-                                        color: Colors.green,
-                                      ),
-                                      itemCount: 5,
-                                      itemSize: 50.0,
-                                      direction: Axis.horizontal,
-                                    )
-                                  ],
-                                ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ])),
-              ],
-            ),
-          )),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20.0),
+                        ),
+                        const Text('Nom du plat',
+                            style:
+                                TextStyle(fontSize: 40, color: Colors.black)),
+                        const Padding(
+                          padding:
+                              EdgeInsets.only(top: 20.0, left: 30, right: 30),
+                          child: Text(
+                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.black)),
+                        ),
+                        Expanded(
+                          child: ListView(
+                            children: <Widget>[
+                              const ListTile(
+                                leading: Icon(Icons.fastfood),
+                                title: Text('Ingredient 1'),
+                              ),
+                              const ListTile(
+                                leading: Icon(Icons.fastfood),
+                                title: Text('Ingredient 2'),
+                              ),
+                              const ListTile(
+                                leading: Icon(Icons.fastfood),
+                                title: Text('Ingredient 3'),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20.0),
+                                child: Center(
+                                  child: Column(
+                                    children: <Widget>[
+                                      const Text("Valeur nutrionnelle",
+                                          style: TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.black)),
+                                      RatingBarIndicator(
+                                        rating: 2.75,
+                                        itemBuilder: (context, index) =>
+                                            const Icon(
+                                          Icons.circle,
+                                          color: Colors.green,
+                                        ),
+                                        itemCount: 5,
+                                        itemSize: 50.0,
+                                        direction: Axis.horizontal,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ])),
+                ],
+              )),
         ),
 
         // Stats
         Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           alignment: Alignment.center,
-          child: Text("test"),
+          child: ListView(
+            padding: const EdgeInsets.all(8),
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.only(top: 10.0),
+              ),
+              const Center(
+                  child: Text("Stats de la semaine",
+                      style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold))),
+              const Padding(
+                padding: EdgeInsets.only(top: 40.0),
+              ),
+              const Center(
+                  child: Text("Gaspillage évité",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold))),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: DChartBar(
+                  data: const [
+                    {
+                      'id': 'Bar',
+                      'data': [
+                        {'domain': 'Lundi', 'measure': 1},
+                        {'domain': 'Mardi', 'measure': 1.25},
+                        {'domain': 'Mercredi', 'measure': 0.5},
+                        {'domain': 'Jeudi', 'measure': 0.29},
+                        {'domain': 'Vendredi', 'measure': 2.5},
+                        {'domain': 'Samedi', 'measure': 1.25},
+                        {'domain': 'Dimanche', 'measure': 1.07},
+                      ],
+                    },
+                  ],
+                  xAxisTitle: 'Jours',
+                  yAxisTitle: 'Gaspillage en kg',
+                  domainLabelPaddingToAxisLine: 16,
+                  axisLineTick: 2,
+                  axisLinePointTick: 2,
+                  axisLinePointWidth: 10,
+                  axisLineColor: Colors.yellow,
+                  measureLabelPaddingToAxisLine: 16,
+                  barColor: (barData, index, id) => Colors.yellow,
+                  showBarValue: true,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 50.0),
+              ),
+              const Center(
+                  child: Text("Ma Diététique",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold))),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: DChartBar(
+                  data: const [
+                    {
+                      'id': 'Bar',
+                      'data': [
+                        {'domain': 'Lundi', 'measure': 2100},
+                        {'domain': 'Mardi', 'measure': 2300},
+                        {'domain': 'Mercredi', 'measure': 1900},
+                        {'domain': 'Jeudi', 'measure': 2400},
+                        {'domain': 'Vendredi', 'measure': 2000},
+                        {'domain': 'Samedi', 'measure': 1790},
+                        {'domain': 'Dimanche', 'measure': 2220},
+                      ],
+                    },
+                  ],
+                  xAxisTitle: 'Jours',
+                  yAxisTitle: 'Valeur énergétique kcal',
+                  domainLabelPaddingToAxisLine: 16,
+                  axisLineTick: 2,
+                  axisLinePointTick: 2,
+                  axisLinePointWidth: 10,
+                  axisLineColor: Colors.green,
+                  measureLabelPaddingToAxisLine: 16,
+                  barColor: (barData, index, id) => Colors.green,
+                  showBarValue: true,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 50.0),
+              )
+            ],
+          ),
         ),
       ][_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -1783,7 +1924,8 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -1819,7 +1961,8 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -1855,7 +1998,8 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -1891,7 +2035,8 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -1927,7 +2072,8 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -1963,7 +2109,8 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2018,7 +2165,8 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2054,7 +2202,8 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2090,7 +2239,8 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2126,7 +2276,8 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2162,7 +2313,8 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2198,7 +2350,8 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2253,7 +2406,8 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2289,7 +2443,8 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2325,7 +2480,8 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2361,7 +2517,8 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2397,7 +2554,8 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2433,7 +2591,8 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const DescriptionRoute()),
+                                builder: (context) =>
+                                    const DescriptionAddRoute()),
                           )
                         },
                         child: Stack(
@@ -2507,9 +2666,9 @@ class DescriptionRoute extends StatelessWidget {
                   child: Center(
                     child: Column(
                       children: <Widget>[
-                        Text("Note moyenne",
-                            style: const TextStyle(
-                                fontSize: 30, color: Colors.black)),
+                        const Text("Note moyenne",
+                            style:
+                                TextStyle(fontSize: 30, color: Colors.black)),
                         RatingBarIndicator(
                           rating: 2.75,
                           itemBuilder: (context, index) => const Icon(
@@ -2530,8 +2689,8 @@ class DescriptionRoute extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         const Text("Valeur nutrionnelle",
-                            style: TextStyle(
-                                fontSize: 30, color: Colors.black)),
+                            style:
+                                TextStyle(fontSize: 30, color: Colors.black)),
                         RatingBarIndicator(
                           rating: 2.75,
                           itemBuilder: (context, index) => const Icon(
@@ -2544,6 +2703,254 @@ class DescriptionRoute extends StatelessWidget {
                         )
                       ],
                     ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ]));
+  }
+}
+
+class DescriptionAddRoute extends StatelessWidget {
+  const DescriptionAddRoute({super.key});
+
+  Widget _buildPopupDialog3(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Confirmation'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text("Plat ajouté au panier"),
+        ],
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            Navigator.pop(context);
+          },
+          child: const Text('Fermer'),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Description du plat'),
+        ),
+        body: Column(children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.only(top: 20.0),
+          ),
+          const Text('Nom du plat',
+              style: TextStyle(fontSize: 40, color: Colors.black)),
+          const Padding(
+            padding: EdgeInsets.only(top: 20.0, left: 30, right: 30),
+            child: Text(
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+                style: TextStyle(fontSize: 17, color: Colors.black)),
+          ),
+          Expanded(
+            child: ListView(
+              children: <Widget>[
+                const ListTile(
+                  leading: Icon(Icons.fastfood),
+                  title: Text('Ingredient 1'),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.fastfood),
+                  title: Text('Ingredient 2'),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.fastfood),
+                  title: Text('Ingredient 3'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Center(
+                    child: Column(
+                      children: <Widget>[
+                        const Text("Note moyenne",
+                            style:
+                                TextStyle(fontSize: 30, color: Colors.black)),
+                        RatingBarIndicator(
+                          rating: 2.75,
+                          itemBuilder: (context, index) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          itemCount: 5,
+                          itemSize: 50.0,
+                          direction: Axis.horizontal,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Center(
+                    child: Column(
+                      children: <Widget>[
+                        const Text("Valeur nutrionnelle",
+                            style:
+                                TextStyle(fontSize: 30, color: Colors.black)),
+                        RatingBarIndicator(
+                          rating: 2.75,
+                          itemBuilder: (context, index) => const Icon(
+                            Icons.circle,
+                            color: Colors.green,
+                          ),
+                          itemCount: 5,
+                          itemSize: 50.0,
+                          direction: Axis.horizontal,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 25.0),
+                  child: Center(
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                _buildPopupDialog3(context),
+                          );
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.black),
+                        ),
+                        child: const Text('Ajouter au panier',
+                            style: TextStyle(
+                                fontSize: 40,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ]));
+  }
+}
+
+class ParamRoute extends StatelessWidget {
+  const ParamRoute({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Paramètres'),
+        ),
+        body: Column(children: <Widget>[
+          Expanded(
+            child: ListView(
+              children: const <Widget>[
+                ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('Paramètre 1'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('Paramètre 2'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('Paramètre 3'),
+                ),
+              ],
+            ),
+          ),
+        ]));
+  }
+}
+
+class PanierRoute extends StatelessWidget {
+  const PanierRoute({super.key});
+
+  Widget _buildPopupDialog2(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Confirmation'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text("Réservation effectuée"),
+        ],
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            Navigator.pop(context);
+          },
+          child: const Text('Fermer'),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Panier'),
+        ),
+        body: Column(children: <Widget>[
+          Expanded(
+            child: ListView(
+              children: <Widget>[
+                const Padding(
+                  padding: EdgeInsets.only(top: 50.0),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.fastfood),
+                  title: Text('Entrée'),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.fastfood),
+                  title: Text('Plat'),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.fastfood),
+                  title: Text('Dessert'),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 50.0),
+                ),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            _buildPopupDialog2(context),
+                      );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black),
+                    ),
+                    child: const Text('Réserver',
+                        style: TextStyle(
+                            fontSize: 40,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold)),
                   ),
                 ),
               ],
