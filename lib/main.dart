@@ -1,7 +1,7 @@
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:swipable_stack/swipable_stack.dart';
+import 'package:appinio_swiper/appinio_swiper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +32,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// Define data structure for a bar group
+class DataItem {
+  int x;
+  double y1;
+  double y2;
+  double y3;
+
+  DataItem(
+      {required this.x, required this.y1, required this.y2, required this.y3});
+}
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -51,16 +62,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late final _ratingController;
-  late double _rating;
-
-  double _userRating = 3.0;
-  int _ratingBarMode = 1;
-  double _initialRating = 2.0;
-  bool _isRTLMode = false;
-  bool _isVertical = false;
+  final double _initialRating = 2.0;
+  final bool _isVertical = false;
   int _selectedIndex = 0;
-  late final SwipableStackController _controller;
+
+
+
   final PageController controller = PageController();
 
   static const TextStyle optionStyle =
@@ -256,7 +263,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const EntreesRoute()),
+                                                const EntreesRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -268,9 +275,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -279,7 +286,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold))),
+                                                        FontWeight.bold))),
                                       ],
                                     ),
                                   )),
@@ -293,7 +300,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const PlatsRoute()),
+                                                const PlatsRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -305,9 +312,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -316,7 +323,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -330,7 +337,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const DessertRoute()),
+                                                const DessertRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -342,9 +349,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -353,7 +360,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -388,7 +395,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const EntreesRoute()),
+                                                const EntreesRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -400,9 +407,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -411,7 +418,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold))),
+                                                        FontWeight.bold))),
                                       ],
                                     ),
                                   )),
@@ -425,7 +432,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const PlatsRoute()),
+                                                const PlatsRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -437,9 +444,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -448,7 +455,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -462,7 +469,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const DessertRoute()),
+                                                const DessertRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -474,9 +481,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -485,7 +492,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -520,7 +527,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const EntreesRoute()),
+                                                const EntreesRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -532,9 +539,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -543,7 +550,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold))),
+                                                        FontWeight.bold))),
                                       ],
                                     ),
                                   )),
@@ -557,7 +564,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const PlatsRoute()),
+                                                const PlatsRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -569,9 +576,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -580,7 +587,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -594,7 +601,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const DessertRoute()),
+                                                const DessertRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -606,9 +613,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -617,7 +624,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -652,7 +659,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const EntreesRoute()),
+                                                const EntreesRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -664,9 +671,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -675,7 +682,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold))),
+                                                        FontWeight.bold))),
                                       ],
                                     ),
                                   )),
@@ -689,7 +696,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const PlatsRoute()),
+                                                const PlatsRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -701,9 +708,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -712,7 +719,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -726,7 +733,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const DessertRoute()),
+                                                const DessertRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -738,9 +745,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -749,7 +756,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -784,7 +791,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const EntreesRoute()),
+                                                const EntreesRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -796,9 +803,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -807,7 +814,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold))),
+                                                        FontWeight.bold))),
                                       ],
                                     ),
                                   )),
@@ -821,7 +828,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const PlatsRoute()),
+                                                const PlatsRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -833,9 +840,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -844,7 +851,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -858,7 +865,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const DessertRoute()),
+                                                const DessertRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -870,9 +877,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -881,7 +888,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -916,7 +923,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const EntreesRoute()),
+                                                const EntreesRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -928,9 +935,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -939,7 +946,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold))),
+                                                        FontWeight.bold))),
                                       ],
                                     ),
                                   )),
@@ -953,7 +960,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const PlatsRoute()),
+                                                const PlatsRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -965,9 +972,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -976,7 +983,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -990,7 +997,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const DessertRoute()),
+                                                const DessertRoute()),
                                       )
                                     },
                                     child: Stack(
@@ -1002,9 +1009,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.cover,
                                             child: Center(
                                                 child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/plat1.jpg"),
-                                                )),
+                                              image: AssetImage(
+                                                  "assets/images/plat1.jpg"),
+                                            )),
                                           ),
                                         ),
                                         Center(
@@ -1013,7 +1020,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     fontSize: 80,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                    FontWeight.bold)))
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   )),
@@ -1104,7 +1111,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       onRatingUpdate: (rating) {
                         setState(() {
-                          _rating = rating;
                         });
                       },
                       updateOnDrag: true,
@@ -1185,7 +1191,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       onRatingUpdate: (rating) {
                         setState(() {
-                          _rating = rating;
                         });
                       },
                       updateOnDrag: true,
@@ -1266,7 +1271,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       onRatingUpdate: (rating) {
                         setState(() {
-                          _rating = rating;
                         });
                       },
                       updateOnDrag: true,
@@ -1347,7 +1351,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       onRatingUpdate: (rating) {
                         setState(() {
-                          _rating = rating;
                         });
                       },
                       updateOnDrag: true,
@@ -1428,7 +1431,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       onRatingUpdate: (rating) {
                         setState(() {
-                          _rating = rating;
                         });
                       },
                       updateOnDrag: true,
@@ -1509,7 +1511,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       onRatingUpdate: (rating) {
                         setState(() {
-                          _rating = rating;
                         });
                       },
                       updateOnDrag: true,
@@ -1543,44 +1544,187 @@ class _MyHomePageState extends State<MyHomePage> {
 
         // Voter
         Container(
-          alignment: Alignment.center,
-          child: SwipableStack(
-            builder: (context, properties) {
-              return Stack(
-                children: const <Widget>[
-              Card(
-              clipBehavior: Clip.hardEdge,
-                child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: Center(
-                      child: Image(
-                        image:
-                        AssetImage("assets/images/plat1.jpg"),
-                      )),
-                ),
-              ),
-                  Card(
-                    clipBehavior: Clip.hardEdge,
-                    child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: Center(
-                          child: Image(
-                            image:
-                            AssetImage("assets/images/plat2.jpg"),
-                          )),
+          child: Center(
+              child: Container(
+            height: MediaQuery.of(context).size.height * 0.8,
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: AppinioSwiper(
+              cards: <Widget>[
+                Container(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 3),
+                          blurRadius: 7,
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                      ],
                     ),
-                  )
-                ],
-              );
+                    child: Column(children: <Widget>[
+                      const Expanded(child:         SizedBox(
+                        child: Card(
+                          clipBehavior: Clip.hardEdge,
+                          child: FittedBox(
+                            fit: BoxFit.cover,
+                            child: Center(
+                                child: Image(
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
+                          ),
+                        ),
+                      ),),
 
-            },
-          ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20.0),
+                      ),
+                      const Text('Nom du plat',
+                          style: TextStyle(fontSize: 40, color: Colors.black)),
+                      const Padding(
+                        padding:
+                        EdgeInsets.only(top: 20.0, left: 30, right: 30),
+                        child: Text(
+                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+                            style:
+                            TextStyle(fontSize: 17, color: Colors.black)),
+                      ),
+                      Expanded(
+                        child: ListView(
+                          children: <Widget>[
+                            const ListTile(
+                              leading: Icon(Icons.fastfood),
+                              title: Text('Ingredient 1'),
+                            ),
+                            const ListTile(
+                              leading: Icon(Icons.fastfood),
+                              title: Text('Ingredient 2'),
+                            ),
+                            const ListTile(
+                              leading: Icon(Icons.fastfood),
+                              title: Text('Ingredient 3'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: Center(
+                                child: Column(
+                                  children: <Widget>[
+                                    const Text("Valeur nutrionnelle",
+                                        style: TextStyle(
+                                            fontSize: 30, color: Colors.black)),
+                                    RatingBarIndicator(
+                                      rating: 2.75,
+                                      itemBuilder: (context, index) =>
+                                      const Icon(
+                                        Icons.circle,
+                                        color: Colors.green,
+                                      ),
+                                      itemCount: 5,
+                                      itemSize: 50.0,
+                                      direction: Axis.horizontal,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ])),
+                Container(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 3),
+                          blurRadius: 7,
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                      ],
+                    ),
+                    child: Column(children: <Widget>[
+                      const Expanded(child:         SizedBox(
+                        child: Card(
+                          clipBehavior: Clip.hardEdge,
+                          child: FittedBox(
+                            fit: BoxFit.cover,
+                            child: Center(
+                                child: Image(
+                                  image: AssetImage("assets/images/plat2.jpg"),
+                                )),
+                          ),
+                        ),
+                      ),),
+
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20.0),
+                      ),
+                      const Text('Nom du plat',
+                          style: TextStyle(fontSize: 40, color: Colors.black)),
+                      const Padding(
+                        padding:
+                        EdgeInsets.only(top: 20.0, left: 30, right: 30),
+                        child: Text(
+                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+                            style:
+                            TextStyle(fontSize: 17, color: Colors.black)),
+                      ),
+                      Expanded(
+                        child: ListView(
+                          children: <Widget>[
+                            const ListTile(
+                              leading: Icon(Icons.fastfood),
+                              title: Text('Ingredient 1'),
+                            ),
+                            const ListTile(
+                              leading: Icon(Icons.fastfood),
+                              title: Text('Ingredient 2'),
+                            ),
+                            const ListTile(
+                              leading: Icon(Icons.fastfood),
+                              title: Text('Ingredient 3'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: Center(
+                                child: Column(
+                                  children: <Widget>[
+                                    const Text("Valeur nutrionnelle",
+                                        style: TextStyle(
+                                            fontSize: 30, color: Colors.black)),
+                                    RatingBarIndicator(
+                                      rating: 2.75,
+                                      itemBuilder: (context, index) =>
+                                      const Icon(
+                                        Icons.circle,
+                                        color: Colors.green,
+                                      ),
+                                      itemCount: 5,
+                                      itemSize: 50.0,
+                                      direction: Axis.horizontal,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ])),
+              ],
+            ),
+          )),
         ),
 
         // Stats
         Container(
           alignment: Alignment.center,
-          child: const Text('Page 4'),
+          child: Text("test"),
         ),
       ][_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -1626,8 +1770,7 @@ class EntreesRoute extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Liste des entrées'),
       ),
-      body:
-      Container(
+      body: Container(
           alignment: Alignment.center,
           child: ListView(
             children: <Widget>[
@@ -1640,8 +1783,7 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -1653,9 +1795,8 @@ class EntreesRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -1667,7 +1808,6 @@ class EntreesRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -1679,8 +1819,7 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -1692,9 +1831,8 @@ class EntreesRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -1706,7 +1844,6 @@ class EntreesRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -1718,8 +1855,7 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -1731,9 +1867,8 @@ class EntreesRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -1745,7 +1880,6 @@ class EntreesRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -1757,8 +1891,7 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -1770,9 +1903,8 @@ class EntreesRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -1784,7 +1916,6 @@ class EntreesRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -1796,8 +1927,7 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -1809,9 +1939,8 @@ class EntreesRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -1823,7 +1952,6 @@ class EntreesRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -1835,8 +1963,7 @@ class EntreesRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -1848,9 +1975,8 @@ class EntreesRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -1862,10 +1988,8 @@ class EntreesRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
-
             ],
           )),
     );
@@ -1894,8 +2018,7 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -1907,9 +2030,8 @@ class PlatsRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -1921,7 +2043,6 @@ class PlatsRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -1933,8 +2054,7 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -1946,9 +2066,8 @@ class PlatsRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -1960,7 +2079,6 @@ class PlatsRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -1972,8 +2090,7 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -1985,9 +2102,8 @@ class PlatsRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -1999,7 +2115,6 @@ class PlatsRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -2011,8 +2126,7 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -2024,9 +2138,8 @@ class PlatsRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -2038,7 +2151,6 @@ class PlatsRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -2050,8 +2162,7 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -2063,9 +2174,8 @@ class PlatsRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -2077,7 +2187,6 @@ class PlatsRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -2089,8 +2198,7 @@ class PlatsRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -2102,9 +2210,8 @@ class PlatsRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -2116,10 +2223,8 @@ class PlatsRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
-
             ],
           )),
     );
@@ -2148,8 +2253,7 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -2161,9 +2265,8 @@ class DessertRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -2175,7 +2278,6 @@ class DessertRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -2187,8 +2289,7 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -2200,9 +2301,8 @@ class DessertRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -2214,7 +2314,6 @@ class DessertRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -2226,8 +2325,7 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -2239,9 +2337,8 @@ class DessertRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -2253,7 +2350,6 @@ class DessertRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -2265,8 +2361,7 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -2278,9 +2373,8 @@ class DessertRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -2292,7 +2386,6 @@ class DessertRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -2304,8 +2397,7 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -2317,9 +2409,8 @@ class DessertRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -2331,7 +2422,6 @@ class DessertRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
               Column(
@@ -2343,8 +2433,7 @@ class DessertRoute extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const DescriptionRoute()),
+                                builder: (context) => const DescriptionRoute()),
                           )
                         },
                         child: Stack(
@@ -2356,9 +2445,8 @@ class DessertRoute extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 child: Center(
                                     child: Image(
-                                      image:
-                                      AssetImage("assets/images/plat1.jpg"),
-                                    )),
+                                  image: AssetImage("assets/images/plat1.jpg"),
+                                )),
                               ),
                             ),
                             Center(
@@ -2370,10 +2458,8 @@ class DessertRoute extends StatelessWidget {
                           ],
                         ),
                       )),
-
                 ],
               ),
-
             ],
           )),
     );
@@ -2416,12 +2502,14 @@ class DescriptionRoute extends StatelessWidget {
                   leading: Icon(Icons.fastfood),
                   title: Text('Ingredient 3'),
                 ),
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.only(top: 20.0),
-                  child:          Center(
+                  child: Center(
                     child: Column(
                       children: <Widget>[
-                        Text("Note moyenne", style: const TextStyle(fontSize: 30, color: Colors.black)),
+                        Text("Note moyenne",
+                            style: const TextStyle(
+                                fontSize: 30, color: Colors.black)),
                         RatingBarIndicator(
                           rating: 2.75,
                           itemBuilder: (context, index) => const Icon(
@@ -2438,10 +2526,12 @@ class DescriptionRoute extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
-                  child:          Center(
+                  child: Center(
                     child: Column(
                       children: <Widget>[
-                        Text("Valeur nutrionnelle", style: const TextStyle(fontSize: 30, color: Colors.black)),
+                        const Text("Valeur nutrionnelle",
+                            style: TextStyle(
+                                fontSize: 30, color: Colors.black)),
                         RatingBarIndicator(
                           rating: 2.75,
                           itemBuilder: (context, index) => const Icon(
@@ -2456,7 +2546,6 @@ class DescriptionRoute extends StatelessWidget {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
